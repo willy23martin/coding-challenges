@@ -18,3 +18,4 @@
 4. [Memcached scaling references.](https://www.youtube.com/watch?v=1MAgt0bFdwM)
 5. [Ubuntu 14.04.6 Vagrant Box.](https://app.vagrantup.com/ubuntu/boxes/trusty64)
 6. [Memcached installation in Ubuntu 14.04.6.](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04)
+7. [Memcached Dalli Ruby Gem.](https://redislabs.com/lp/rails-memcached/)
