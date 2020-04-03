@@ -10,6 +10,10 @@
  4. Then, verify that the **memcached service** is running in the console log: `==> WMC_MEMCACHED_SERVER: memcached is running`.
  5. Finally use **telnet command** to connect to the memcached service in port 11211: `telnet 192.168.1.235 11211`
 
+##Ruby on rails web server:
+1. Heroku URL: https://mighty-tor-94608.herokuapp.com/ 
+2. 
+
 ##References:
  
 1. [Memcached Installation.](https://memcached.org/downloads)
