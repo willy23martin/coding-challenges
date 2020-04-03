@@ -15,7 +15,6 @@
 2. 
 
 ##References:
- 
 1. [Memcached Installation.](https://memcached.org/downloads)
 2. [Memcached Hardware requirements.](https://github.com/memcached/memcached/wiki/Hardware)
 3. [Memcached Requirements - example use case.](https://github.com/memcached/memcached/wiki/TutorialCachingStory)
@@ -23,3 +22,5 @@
 5. [Ubuntu 14.04.6 Vagrant Box.](https://app.vagrantup.com/ubuntu/boxes/trusty64)
 6. [Memcached installation in Ubuntu 14.04.6.](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04)
 7. [Memcached Dalli Ruby Gem.](https://redislabs.com/lp/rails-memcached/)
+8. [Heroku Ruby on Rails](https://devcenter.heroku.com/articles/getting-started-with-rails5).
+9. [Memcached in a Heroku Project](https://devcenter.heroku.com/articles/memcachedcloud#using-memcached-from-ruby).
