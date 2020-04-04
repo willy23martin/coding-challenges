@@ -4,14 +4,21 @@
 - **Email**: ingmartic@gmail.com
 
 ##To run Memcached Server:
- 1. [Install Vagrant 1.8.6 in your O.S.](https://releases.hashicorp.com/vagrant/1.8.6/)
- 2. [Install VirtualBox 5.1.20r in your O.S.](https://download.virtualbox.org/virtualbox/5.1.20/)
- 3. Go to the **memcached folder** and execute the command in your **CLI**: `vagrant up`.
+ 1. [Install Vagrant 2.2.6 in your O.S.](https://releases.hashicorp.com/vagrant/2.2.6/)
+ 2. [Install VirtualBox  6.0.16 r135674 (Qt5.6.2) in your O.S.](https://download.virtualbox.org/virtualbox/5.1.20/)
+ 3. Go to the **memcached folder** and do the following:
+ 
+    3.1. Open the **Vagrantfile** and modify the following network global variables:
+     
+         - IP_ADDRESS: "the IP address of your local network, that you want to assign to the bridge NIC of the server."
+         - NETWORK_MASK: "the networks mask related to your private network" 
+    
+    3.2. Execute the command in your **CLI**: `vagrant up --provision`.
+
  4. Then, verify that the **memcached service** is running in the console log: `==> WMC_MEMCACHED_SERVER: memcached is running`.
- 5. Finally use **telnet command** to connect to the memcached service in port 11211: `telnet 192.168.1.235 11211`
 
 ##Ruby on rails web server:
-1. Heroku URL: https://mighty-tor-94608.herokuapp.com/ 
+1. **Heroku URL**: https://mighty-tor-94608.herokuapp.com/ 
 2. 
 
 ##References:
