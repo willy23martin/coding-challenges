@@ -37,12 +37,23 @@ $script_memcached_server_configuration = <<SCRIPT
  sudo cat /etc/memcached.conf
 SCRIPT
 
+#Reference: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04
+$script_memcached_server_sasl_configuration = <<SRIPT
+  sudo apt-get install sasl2-bin -y
+  sudo cp /vagrant/files/sasl2 /etc/
+  sudo saslpasswd2 -a memcached -c -f /etc/sasl2/memcached-sasldb2 mooveit
+  sudo chown memcache:memcache /etc/sasl2/memcached-sasldb2
+SRIPT
+
 $script_memcached_run = <<SCRIPT
   sudo netstat -plunt
   sudo service memcached start
   sudo service memcached enable
   sudo service memcached status
+  sudo memcstat --servers="127.0.0.1"
 SCRIPT
+
+
 #===========================
 
 Vagrant.configure("2") do |config|
@@ -61,6 +72,7 @@ Vagrant.configure("2") do |config|
     memcached.vm.provision "shell", inline: $script_memcached_installation
     # 'RUNNING TO EXECUTE MEMCACHED CONFIGURATION SCRIPTS'
     memcached.vm.provision "shell", inline: $script_memcached_server_configuration
+    memcached.vm.provision "shell", inline: $script_memcached_server_sasl_configuration
     # 'RUNNING TO EXECUTE MEMCACHED SERVICE SCRIPT'
     memcached.vm.provision "shell", inline: $script_memcached_run
 

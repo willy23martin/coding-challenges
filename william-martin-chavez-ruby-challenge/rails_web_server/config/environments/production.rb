@@ -115,6 +115,8 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   #
 
-
+  # Dalli client to memcached server:
+  # Reference: https://www.railscarma.com/blog/technical-articles/rails-caching-dalli-gem/
+  config.cache_store= :dalli_store
 
 end

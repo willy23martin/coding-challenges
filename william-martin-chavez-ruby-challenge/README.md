@@ -15,11 +15,12 @@
     
     3.2. Execute the command in your **CLI**: `vagrant up --provision`.
 
- 4. Then, verify that the **memcached service** is running in the console log: `==> WMC_MEMCACHED_SERVER: memcached is running`.
+ 4. Then, verify that the **memcached service** is running by executing telnet command: `telnet 192.168.1.235 11211`.
+ 5. Then, verify that the **memcached service** is running by checking the console log: `==> WMC_MEMCACHED_SERVER: memcached is running`.
 
 ##Ruby on rails web server:
 1. **Heroku URL**: https://mighty-tor-94608.herokuapp.com/ 
-2. 
+
 
 ##References:
 1. [Memcached Installation.](https://memcached.org/downloads)
@@ -31,3 +32,5 @@
 7. [Memcached Dalli Ruby Gem.](https://redislabs.com/lp/rails-memcached/)
 8. [Heroku Ruby on Rails](https://devcenter.heroku.com/articles/getting-started-with-rails5).
 9. [Memcached in a Heroku Project](https://devcenter.heroku.com/articles/memcachedcloud#using-memcached-from-ruby).
+10. [Simple Authentication and Security Layer](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04).
+11. [SASLHowto](https://github.com/memcached/memcached/wiki/SASLHowto).
