@@ -1,0 +1,20 @@
+<h1>RubyOnRails-MemcachedClient-RetrievalCommands-Manager</h1>
+
+<%= form_for :post, url:'/retrieval/result' do |f| %>
+  <p>
+     <table>
+        <tr>
+              <td>
+                <label><b>Retrieval Command:</b></label>
+              </td>
+              <td>
+                <%= select_tag(:retrievalCommand, options_for_select([['get', 1], ['gets', 2]])) %>
+              </td>
+              <td>
+                <%= f.text_field :stored_key %>
+              </td>
+          </tr>
+      </table>
+  </p>
+  <%= f.submit "Execute" %>
+<% end -%>

@@ -1,12 +1,11 @@
-#MooveIt - Ruby Test
+# Memcached-RubyOnRails Challenge
 **Documented by:** 
-- William Martín Chávez González
-- **Email**: ingmartic@gmail.com
+- **Name:** William Martín Chávez González.
 
-##To run Memcached Server:
+## To run Memcached Server:
  1. [Install Vagrant 2.2.6 in your O.S.](https://releases.hashicorp.com/vagrant/2.2.6/)
  2. [Install VirtualBox  6.0.16 r135674 (Qt5.6.2) in your O.S.](https://download.virtualbox.org/virtualbox/5.1.20/)
- 3. Go to the **memcached folder** and do the following:
+ 3. Go to the ***memcached*** **folder** and do the following:
  
     3.1. Open the **Vagrantfile** and modify the following network global variables:
      
@@ -29,9 +28,26 @@
  8. In order to test the memcached, set the password in the *testMemcached.rb* file and execute the `ruby testMemcached.rb` command in your CLI.
     * Finally, check the **result**: "The key elementKey has a value: 99856."
      
-##Ruby on rails web server (MemcachedClient):
+## Ruby on rails web server (MemcachedClient):
+Fist, you have to go to the *rails_web_server* folder in your **CLI**.
 
-##References:
+### A) Configure and set the RubyOnRails-Web-Server-MemcachedClient
+1. In order to set the last SASL authentication mooveit´s password to be used
+in the RubyOnRails-WebServer-MemcachedClient, go to the *rails_web_server/config/production.rb* file
+and modify the **:password** value to the mooveit´s.
+ 
+### B) Testing the MemcachedClient commands:
+1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=test`.
+2. **Memcached - Retrieval Commands tests**: execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb`.
+3. **Memcached - Storage Commands tests**: execute the command: `rails test test\models\memcached_storage_command_manager_test.rb`.
+ 
+### C) Run it into local environment:
+1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=production`.
+2. Execute the command: `rails server`.
+3. Go to your browser and enter **localhost:3000**, the web page is loaded and allows to you
+to execute both Retrieval / Storage commands.
+
+## References:
 1. [Memcached Installation.](https://memcached.org/downloads)
 2. [Memcached Hardware requirements.](https://github.com/memcached/memcached/wiki/Hardware)
 3. [Memcached Requirements - example use case.](https://github.com/memcached/memcached/wiki/TutorialCachingStory)
@@ -43,3 +59,7 @@
 9. [Memcached in a Heroku Project](https://devcenter.heroku.com/articles/memcachedcloud#using-memcached-from-ruby).
 10. [Simple Authentication and Security Layer](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04).
 11. [SASLHowto](https://github.com/memcached/memcached/wiki/SASLHowto).
+12. [RubyOnRails-MemcachedClient](https://redislabs.com/lp/rails-memcached/).
+13. [RubyOnRails-Environmental Variables](https://hackernoon.com/how-to-setup-environmental-variables-in-a-rails-application-ipdz3ygs).
+14. [RubyOnRails-TestCases](https://guides.rubyonrails.org/testing.html).
+15. [RubyOnRails-FormHelpers](https://guides.rubyonrails.org/form_helpers.html).

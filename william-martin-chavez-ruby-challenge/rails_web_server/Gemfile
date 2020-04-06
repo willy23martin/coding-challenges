@@ -54,3 +54,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Memcached Gem-Dalli:
 # Reference: https://redislabs.com/lp/rails-memcached/
 gem 'dalli'
+
+# Environmental variables
+# Reference: https://hackernoon.com/how-to-setup-environmental-variables-in-a-rails-application-ipdz3ygs
+gem 'figaro'
