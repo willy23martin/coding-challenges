@@ -14,13 +14,22 @@
          - NETWORK_MASK: "the networks mask related to your private network" 
     
     3.2. Execute the command in your **CLI**: `vagrant up --provision`.
-
+    3.3. Select the Hoist´s bridge network interface once the console displays the options: `==> WMC_MEMCACHED_SERVER: Available bridged network interfaces:`
+    
  4. Then, verify that the **memcached service** is running by executing telnet command: `telnet 192.168.1.235 11211`.
  5. Then, verify that the **memcached service** is running by checking the console log: `==> WMC_MEMCACHED_SERVER: memcached is running`.
-
-##Ruby on rails web server:
-1. **Heroku URL**: https://mighty-tor-94608.herokuapp.com/ 
-
+ 6. Then, use the command `vagrant ssh` or the [PuTTY](https://www.putty.org/) or another ssh client in order to connect to the Memcached Server to the 192.168.1.235 IP Address
+  and with the following credentials:
+    * **user**: vagrant
+    * **password**: vagrant
+ 7. Then, in order to set the username and password of the Memcached SASL2 authentication mechanism,
+    execute the following command in the vagrant console: `sudo saslpasswd2 -a memcached -c -f /etc/sasl2/memcached-sasldb2 mooveit`.
+    * Set the **password** and confirm it - the **username(mooveit)** and **password** would be the same that you have to use in all
+    **Memcached Clients (RubyOnRails web servers)**.
+ 8. In order to test the memcached, set the password in the *testMemcached.rb* file and execute the `ruby testMemcached.rb` command in your CLI.
+    * Finally, check the **result**: "The key elementKey has a value: 99856."
+     
+##Ruby on rails web server (MemcachedClient):
 
 ##References:
 1. [Memcached Installation.](https://memcached.org/downloads)
