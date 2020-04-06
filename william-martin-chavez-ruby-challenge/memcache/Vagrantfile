@@ -1,0 +1,88 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Santiago de Cali, March 15th, 2020
+# Vagrant file to run a Memcached Server
+# OS: UNIX/Linux RedHat CentOS7
+# Memcached reference: https://memcached.org/downloads
+
+# Global variables:
+SERVICE_NAME = "WMC_MEMCACHED_SERVER"
+# SERVICE_PORT = 11211
+HOSTNAME = "memcached"
+IP_ADDRESS = "192.168.1.235"
+OS_NIC_NAME = "eth1"
+NETWORK_MASK = "255.255.255.0"
+#===========================
+
+#Common dependencies installation scripts:
+$script_init = <<SCRIPT
+ sudo apt-get upgrade -y
+ sudo apt-get update --fix-missing -y
+ sudo apt-get install wget -y
+ sudo apt-get install nmap -y
+ sudo apt-get install vim - y
+ sudo apt-get install rpm -y
+SCRIPT
+
+#
+$script_memcached_installation = <<SCRIPT
+ sudo apt-get install memcached -y
+ sudo apt-get install libmemcached-tools -y
+SCRIPT
+
+# Reference: https://stackoverflow.com/questions/54067192/vagrant-config-vm-provision-does-not-allow-me-to-copy-a-file-to-etc-nginx-conf
+$script_memcached_server_configuration = <<SCRIPT
+ sudo cp /vagrant/files/memcached.conf /etc/
+ sudo cat /etc/memcached.conf
+SCRIPT
+
+#Reference: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04
+$script_memcached_server_sasl_configuration = <<SCRIPT
+  sudo apt-get install sasl2-bin -y
+  sudo mkdir /etc/sasl2
+  sudo cp /vagrant/files/sasl2/memcached.conf /etc/sasl2/
+  sudo saslpasswd2 -a memcached -c -f /etc/sasl2/memcached-sasldb2 mooveit
+  sudo chown memcache:memcache /etc/sasl2/memcached-sasldb2
+  sudo service memcached start
+  sudo service memcached enable
+  sudo service memcached status
+  sudo netstat -plunt
+SCRIPT
+
+$script_memcached_run = <<SCRIPT
+  sudo service memcached stop
+  sudo service memcached start
+  sudo service memcached status
+  sudo netstat -plunt
+SCRIPT
+
+
+
+#===========================
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define SERVICE_NAME do |memcached|
+    memcached.vm.box = "ubuntu/trusty64"
+    memcached.vm.network "public_network", bridge: OS_NIC_NAME, ip:IP_ADDRESS, netmask: NETWORK_MASK
+    memcached.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2", "--name", SERVICE_NAME]
+    end
+    # 'RUNNING INIT SCRIPT'
+    memcached.vm.provision "shell", inline: $script_init
+    # 'RUNNING TO GRANT LOGIN AS ROOT'
+    # memcached.vm.provision "shell", path: $script_memcached_root_grant_login
+    # 'RUNNING MEMCACHED INSTALLATION SCRIPT'
+    memcached.vm.provision "shell", inline: $script_memcached_installation
+    # 'RUNNING TO EXECUTE MEMCACHED CONFIGURATION SCRIPTS'
+    memcached.vm.provision "file", source: "files", destination: "files"
+    memcached.vm.provision "shell", inline: $script_memcached_server_configuration
+    memcached.vm.provision "shell", inline: $script_memcached_server_sasl_configuration
+    # 'RUNNING TO EXECUTE MEMCACHED SERVICE SCRIPT'
+    memcached.vm.provision "shell", inline: $script_memcached_run
+    # 'CONFIGURING SASL USER AUTHENTICATION FOR MEMCACHED CLIENTS'
+    #memcached.vm.provision "shell", inline: $script_memcached_server_sasl2_configuration
+  end
+
+end
