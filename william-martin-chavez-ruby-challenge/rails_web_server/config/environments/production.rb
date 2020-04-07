@@ -53,13 +53,6 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
-  # Use a different cache store in production.
-  config.cache_store = :dalli_store,
-      ('hostname:11211'),
-          {:username => 'username',
-           :password => 'password'
-          }
-
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "rails_web_server_production"
@@ -115,7 +108,6 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   #
 
-  # Dalli client to memcached server:
-  # Reference: https://www.railscarma.com/blog/technical-articles/rails-caching-dalli-gem/
+
 
 end

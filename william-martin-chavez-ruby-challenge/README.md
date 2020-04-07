@@ -9,11 +9,17 @@
  
     3.1. Open the **Vagrantfile** and modify the following network global variables:
      
-         - IP_ADDRESS: "the IP address of your local network, that you want to assign to the bridge NIC of the server."
-         - NETWORK_MASK: "the networks mask related to your private network" 
+         3.1.1) IP_ADDRESS: "the IP address of your local network, that you want to assign to the bridge NIC of the server."
+         3.1.2) NETWORK_MASK: "the networks mask related to your private network" 
     
-    3.2. Execute the command in your **CLI**: `vagrant up --provision`.
-    3.3. Select the Hoist´s bridge network interface once the console displays the options: `==> WMC_MEMCACHED_SERVER: Available bridged network interfaces:`
+    3.2. Go to the ***files* folder** and if you want set the following default memcached service parameters:
+     
+         3.2.1) -m: "the amount of memory the server will use."
+         3.2.2) -p: "the port in which the server will listen from."
+         3.2.3) -l: "the IP address of your local network, that you want to assign to the bridge NIC of the server. It should be the same that was condigured in step 3.1."
+    
+    3.3. Go back to ***memcached*** **folder* and execute the following command in your **CLI**: `vagrant up --provision`.
+    3.4. Select the Host´s bridge network interface once the console displays the options: `==> WMC_MEMCACHED_SERVER: Available bridged network interfaces:`
     
  4. Then, verify that the **memcached service** is running by executing telnet command: `telnet 192.168.1.235 11211`.
  5. Then, verify that the **memcached service** is running by checking the console log: `==> WMC_MEMCACHED_SERVER: memcached is running`.
@@ -35,14 +41,27 @@ Fist, you have to go to the *rails_web_server* folder in your **CLI**.
 1. In order to set the last SASL authentication mooveit´s password to be used
 in the RubyOnRails-WebServer-MemcachedClient, go to the *rails_web_server/config/production.rb* file
 and modify the **:password** value to the mooveit´s.
+2. **[Install Ruby version 2.6.5p114.](https://rubyinstaller.org/)** in your local environment.
+3. **[Install Gem Rails version 6.0.2.2](https://rubygems.org/gems/rails/versions/6.0.2.2)** in your local environment.
+4. Execute the following command in order to install all the dependencies: `bundle install`.
+5. Execute the following command in order to check dependencies files: `yarn install --check-files`.
+5. Execute the following command in order to pack the bundle: `rails webpacker:install`.
+7. Finally change the name of the *.application.yml* file to *application.yml* in order to set the following
+environment variables:
  
+         4.1) MEMCACHED_SERVER_IP: "the IP address of the memcached server installed in step 3.1 of Memcached section."
+         4.2) MEMCACHED_SERVER_PORT: "the IP address of the memcached server installed in step 3.1 of Memcached section. 11211 by default."
+         4.3) MEMCACHED_SERVER_SASL_USER: "mooveit"
+         4.4) MEMCACHED_SERVER_SASL_PASSWORD: "the password that you defined in step 7. of Memcached Server."       
+        
+
 ### B) Testing the MemcachedClient commands:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=test`.
 2. **Memcached - Retrieval Commands tests**: execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb`.
 3. **Memcached - Storage Commands tests**: execute the command: `rails test test\models\memcached_storage_command_manager_test.rb`.
  
 ### C) Run it into local environment:
-1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=production`.
+1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=development`
 2. Execute the command: `rails server`.
 3. Go to your browser and enter **localhost:3000**, the web page is loaded and allows to you
 to execute both Retrieval / Storage commands.
