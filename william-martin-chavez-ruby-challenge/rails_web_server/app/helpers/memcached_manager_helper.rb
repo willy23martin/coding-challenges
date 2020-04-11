@@ -1,0 +1,2 @@
+module MemcachedManagerHelper
+end

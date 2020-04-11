@@ -1,10 +1,10 @@
 class MemcachedRetrievalCommandsController < ApplicationController
   @@retrievalCommandManager = MemcachedRetrievalCommandManager.new
 
-  def result
+  def index
     @retrievalCommand = ""
     @result = ""
-    puts "Arrives to result controller"
+    puts "Arrives to retrieval result controller"
     if(params[:retrievalCommand] == nil)
       @retrievalCommand = ""
       puts "params nil"
