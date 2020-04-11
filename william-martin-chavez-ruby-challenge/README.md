@@ -56,6 +56,7 @@ environment variables:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=test`.
 2. **Memcached - Retrieval Commands tests**: execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb`.
 3. **Memcached - Storage Commands tests**: execute the command: `rails test test\models\memcached_storage_command_manager_test.rb`.
+4. **Memcached - All Commands tests**: execute the command `rails test`
  
 ### C) Run it into local environment:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=development`

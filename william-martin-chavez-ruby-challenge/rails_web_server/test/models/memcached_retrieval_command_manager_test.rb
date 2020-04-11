@@ -12,6 +12,7 @@ class MemcachedRetrievalCommandManagerTest < ActiveSupport::TestCase
   end
 
   test "test_execute_gets_command" do
+    
     @getCommandResult = @@retrievalCommandManager.execute_gets_command(["elementKey", "mooveitKey"])
     puts "The result was: #{@getCommandResult}"
     puts @getCommandResult[:elementKey]

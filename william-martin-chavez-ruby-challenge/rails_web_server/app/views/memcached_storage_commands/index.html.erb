@@ -1,0 +1,20 @@
+<h1>RubyOnRails-MemcachedClient-StorageCommands-Manager</h1>
+
+<%= form_for :post, url:'/retrieval/result' do |f| %>
+  <p>
+     <table>
+        <tr>
+              <td>
+                <label><b>Storage Command:</b></label>
+              </td>
+              <td>
+                <%= select_tag(:retrievalCommand, options_for_select([['set', 1], ['add', 2], ['replace', 3], ['append', 4], ['prepend', 5], ['cas', 6]])) %>
+              </td>
+              <td>
+                <%= f.text_field :commandBody %>
+              </td>
+          </tr>
+      </table>
+  </p>
+  <%= f.submit "Execute" %>
+<% end -%>
