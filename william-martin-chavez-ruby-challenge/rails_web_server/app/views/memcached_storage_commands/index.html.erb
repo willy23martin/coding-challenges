@@ -1,6 +1,6 @@
 <h1>RubyOnRails-MemcachedClient-StorageCommands-Manager</h1>
 
-<%= form_for :post, url:'/retrieval/result' do |f| %>
+<%= form_for :post, url:'/storage' do |f| %>
   <p>
      <table>
         <tr>
@@ -8,7 +8,7 @@
                 <label><b>Storage Command:</b></label>
               </td>
               <td>
-                <%= select_tag(:retrievalCommand, options_for_select([['set', 1], ['add', 2], ['replace', 3], ['append', 4], ['prepend', 5], ['cas', 6]])) %>
+                <%= select_tag(:storageCommand, options_for_select([['set', 1], ['add', 2], ['replace', 3], ['append', 4], ['prepend', 5], ['cas', 6]])) %>
               </td>
               <td>
                 <%= f.text_field :commandBody %>
@@ -18,3 +18,14 @@
   </p>
   <%= f.submit "Execute" %>
 <% end -%>
+<hr>
+<h2>Storage Command results:</h2>
+<p>
+    <textarea rows="20" cols="70" readonly="true"><%= @result %>
+    </textarea>
+<p/>
+<p>
+  <%= form_for :post, url:'/' do |f2| %>
+    <%= f2.submit "Back to Menu" %>
+  <% end -%>
+</p>
