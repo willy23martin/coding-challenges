@@ -39,4 +39,5 @@ class MemcachedStorageCommandsController < ApplicationController
       @result = "Select a Storage Command option."
     end
   end
+
 end
