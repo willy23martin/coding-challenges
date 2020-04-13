@@ -2,7 +2,11 @@
 **Documented by:** 
 - **Name:** William Martín Chávez González.
 
-## To run Memcached Server:
+## Memcached Service Software-Design Approach:
+1. ![Deployment Diagram](https://github.com/willy23martin/coding-challenges/tree/master/william-martin-chavez-ruby-challenge/documents/Design/Architecture/Deployment_diagram.jpg).
+2. ![Class Diagram](https://github.com/willy23martin/coding-challenges/tree/master/william-martin-chavez-ruby-challenge/documents/Design/Detailed/Class_diagram.jpg)
+
+## To run Memcached Server (memcached daemon):
  1. [Install Vagrant 2.2.6 in your O.S.](https://releases.hashicorp.com/vagrant/2.2.6/)
  2. [Install VirtualBox  6.0.16 r135674 (Qt5.6.2) in your O.S.](https://download.virtualbox.org/virtualbox/5.1.20/)
  3. Go to the ***memcached*** **folder** and do the following:
