@@ -15,7 +15,6 @@
      
          3.1.1) IP_ADDRESS: "the IP address of your local network, that you want to assign to the bridge NIC of the server."
          3.1.2) NETWORK_MASK: "the networks mask related to your private network" 
-<<<<<<< HEAD
     
     3.2. Go to the ***files* folder** and if you want set the following default memcached service parameters:
      
@@ -23,15 +22,6 @@
          3.2.2) -p: "the port in which the server will listen from."
          3.2.3) -l: "the IP address of your ****local network, that you want to assign to the bridge NIC of the server. It should be the same that was condigured in step 3.1."
     
-=======
-    
-    3.2. Go to the ***files* folder** and if you want set the following default memcached service parameters:
-     
-         3.2.1) -m: "the amount of memory the server will use."
-         3.2.2) -p: "the port in which the server will listen from."
-         3.2.3) -l: "the IP address of your ****local network, that you want to assign to the bridge NIC of the server. It should be the same that was condigured in step 3.1."
-    
->>>>>>> v0.1.2
     3.3. Go back to ***memcached*** **folder* and execute the following command in your **CLI**: `vagrant up --provision`.
     3.4. Select the Host´s bridge network interface once the console displays the options: `==> WMC_MEMCACHED_SERVER: Available bridged network interfaces:`
     
