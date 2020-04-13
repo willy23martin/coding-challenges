@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  match '/retrieval', to: 'memcached_retrieval_commands#index', via: [:get, :post]
   match '/retrieval/result', to: 'memcached_retrieval_commands#result', via: [:post]
-  root 'memcached_retrieval_commands#index'
+  match '/storage', to: 'memcached_storage_commands#index', via: [:get, :post]
+  match '/storage/result', to: 'memcached_storage_commands#result', via: [:post]
+  match '/', to: 'memcached_manager#index', via: [:get, :post]
+  root 'memcached_manager#index'
 end

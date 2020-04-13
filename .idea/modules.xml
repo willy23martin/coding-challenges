@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/coding-challenges.iml" filepath="$PROJECT_DIR$/.idea/coding-challenges.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rails_web_server.iml" filepath="$PROJECT_DIR$/.idea/modules/rails_web_server.iml" />
     </modules>
   </component>
 </project>

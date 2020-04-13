@@ -2,7 +2,11 @@
 **Documented by:** 
 - **Name:** William Martín Chávez González.
 
-## To run Memcached Server:
+## Memcached Service Software-Design Approach:
+1. ![Deployment Diagram](https://github.com/willy23martin/coding-challenges/tree/master/william-martin-chavez-ruby-challenge/documents/Design/Architecture/Deployment_diagram.jpg).
+2. ![Class Diagram](https://github.com/willy23martin/coding-challenges/tree/master/william-martin-chavez-ruby-challenge/documents/Design/Detailed/Class_diagram.jpg)
+
+## To run Memcached Server (memcached daemon):
  1. [Install Vagrant 2.2.6 in your O.S.](https://releases.hashicorp.com/vagrant/2.2.6/)
  2. [Install VirtualBox  6.0.16 r135674 (Qt5.6.2) in your O.S.](https://download.virtualbox.org/virtualbox/5.1.20/)
  3. Go to the ***memcached*** **folder** and do the following:
@@ -54,8 +58,17 @@ environment variables:
 
 ### B) Testing the MemcachedClient commands:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=test`.
-2. **Memcached - Retrieval Commands tests**: execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb`.
-3. **Memcached - Storage Commands tests**: execute the command: `rails test test\models\memcached_storage_command_manager_test.rb`.
+2. To test each test case of the Retrieval Commands, execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb -n <NameOfTestCase>`. List of test cases:
+  2.1. **Get command testing:** `test_execute_get_command`.
+  2.2. **Gets command testing:** `test_execute_gets_command`.
+3. To test each test case of the Storage Commands, execute the command: `rails test test\models\memcached_storage_command_manager_test.rb -n <NameOfTestCase>`. List of test cases:
+  3.1. **Set command testing**: `test_execute_set_command`.
+  3.2. **Add command testing**: `test_execute_add_command_failed` - key already exists - and `test_execute_add_command_success`.
+  3.3. **Replace command testing**: `test_execute_replace_command_failed` - key does not exist - and `test_execute_replace_command_success`.
+  3.4. **Append command testing**: `test_execute_append_command_failed` - key-value stored is not a raw-typed value- and  `test_execute_append_command_success`.
+  3.5. **Prepend command testing**: `test_execute_prepend_command_failed` - key-value stored is not a raw-typed value- and  `test_execute_prepend_command_success`.
+  3.6. **Cas command testing**: `test_execute_cas_command`.
+4. **Memcached - Both Retrieval and Storage Commands tests**: execute the command `rails test`.
  
 ### C) Run it into local environment:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=development`
@@ -64,13 +77,13 @@ environment variables:
 to execute both Retrieval / Storage commands.
 
 ## References:
-1. [Memcached Installation.](https://memcached.org/downloads)
-2. [Memcached Hardware requirements.](https://github.com/memcached/memcached/wiki/Hardware)
-3. [Memcached Requirements - example use case.](https://github.com/memcached/memcached/wiki/TutorialCachingStory)
-4. [Memcached scaling references.](https://www.youtube.com/watch?v=1MAgt0bFdwM)
-5. [Ubuntu 14.04.6 Vagrant Box.](https://app.vagrantup.com/ubuntu/boxes/trusty64)
-6. [Memcached installation in Ubuntu 14.04.6.](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04)
-7. [Memcached Dalli Ruby Gem.](https://redislabs.com/lp/rails-memcached/)
+1. [Memcached Installation.](https://memcached.org/downloads).
+2. [Memcached Hardware requirements.](https://github.com/memcached/memcached/wiki/Hardware).
+3. [Memcached Requirements - example use case.](https://github.com/memcached/memcached/wiki/TutorialCachingStory).
+4. [Memcached scaling references.](https://www.youtube.com/watch?v=1MAgt0bFdwM).
+5. [Ubuntu 14.04.6 Vagrant Box.](https://app.vagrantup.com/ubuntu/boxes/trusty64).
+6. [Memcached installation in Ubuntu 14.04.6.](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04).
+7. [Memcached Dalli Ruby Gem.](https://redislabs.com/lp/rails-memcached/).
 8. [Heroku Ruby on Rails](https://devcenter.heroku.com/articles/getting-started-with-rails5).
 9. [Memcached in a Heroku Project](https://devcenter.heroku.com/articles/memcachedcloud#using-memcached-from-ruby).
 10. [Simple Authentication and Security Layer](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04).
@@ -79,3 +92,10 @@ to execute both Retrieval / Storage commands.
 13. [RubyOnRails-Environmental Variables](https://hackernoon.com/how-to-setup-environmental-variables-in-a-rails-application-ipdz3ygs).
 14. [RubyOnRails-TestCases](https://guides.rubyonrails.org/testing.html).
 15. [RubyOnRails-FormHelpers](https://guides.rubyonrails.org/form_helpers.html).
+16. [RubyOnRails-Gem-Dalli-Documentation](https://www.rubydoc.info/github/mperham/dalli/Dalli/Client). 
+17. [RubyOnRails-Exception Handling](http://rubylearning.com/satishtalim/ruby_exceptions.html).
+18. [RubyOnRails-Testing-DatabaseIsLockedError-DatabaseTimeout](https://stackoverflow.com/questions/7154664/ruby-sqlite3busyexception-database-is-locked).
+19. [RubyOnRails-Testing-DatabasesIsLockedError-DatabaseTimeout-Configfile](https://github.com/rails/rails/issues/30937).
+20. [RubyOnRails-DalliGem-Documentation](https://github.com/petergoldstein/dalli).
+21. [Memcached-cas-command-notes](https://devcenter.heroku.com/articles/advanced-memcache).
+22. [Bootstrap and ERB Templates in RubyOnRails](https://melvinchng.github.io/rails/BootstrapFramework.html#chapter-1-bootstrap-framework).
