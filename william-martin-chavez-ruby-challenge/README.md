@@ -82,3 +82,4 @@ to execute both Retrieval / Storage commands.
 17. [RubyOnRails-Exception Handling](http://rubylearning.com/satishtalim/ruby_exceptions.html).
 18. [RubyOnRails-Testing-DatabaseIsLockedError-DatabaseTimeout](https://stackoverflow.com/questions/7154664/ruby-sqlite3busyexception-database-is-locked).
 19. [RubyOnRails-Testing-DatabasesIsLockedError-DatabaseTimeout-Configfile](https://github.com/rails/rails/issues/30937).
+20. [RubyOnRails-DalliGem-Documentation](https://github.com/petergoldstein/dalli).
