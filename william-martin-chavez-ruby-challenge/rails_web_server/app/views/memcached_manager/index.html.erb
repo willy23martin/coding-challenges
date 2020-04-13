@@ -1,0 +1,22 @@
+<h1>RubyOnRails-MemcachedClient-Manager</h1>
+<hr>
+<p>
+    <h3>MemcachedClient-Commands Menu</h3>
+</p>
+<p>
+    <table>
+        <tr>
+            <td>
+                <%= form_for :get, url:'/retrieval' do |f| %>
+                    <%= f.submit "Retrieval Commands" %>
+                <% end -%>
+            </td>
+            <td>
+                <%= form_for :get, url:'/storage' do |f| %>
+                    <%= f.submit "Storage Commands" %>
+                <% end -%>
+            </td>
+        </tr>
+    </table>
+</p>
+

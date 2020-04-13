@@ -43,7 +43,7 @@ $script_memcached_server_sasl_configuration = <<SCRIPT
   sudo mkdir /etc/sasl2
   sudo cp /vagrant/files/sasl2/memcached.conf /etc/sasl2/
   sudo saslpasswd2 -a memcached -c -f /etc/sasl2/memcached-sasldb2 mooveit
-  sudo chown memcache:memcache /etc/sasl2/memcached-sasldb2
+  sudo chown memcached:memcached /etc/sasl2/memcached-sasldb2
   sudo service memcached start
   sudo service memcached enable
   sudo service memcached status
