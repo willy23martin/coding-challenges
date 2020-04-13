@@ -54,8 +54,16 @@ environment variables:
 
 ### B) Testing the MemcachedClient commands:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=test`.
-2. To test each test case of the Retrieval Commands, execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb -n <NameOfTestCase>`.
-3. To test each test case of the Storage Commands, execute the command: `rails test test\models\memcached_storage_command_manager_test.rb -n <NameOfTestCase>`
+2. To test each test case of the Retrieval Commands, execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb -n <NameOfTestCase>`. List of test cases:
+  2.1. **Get command testing:** `test_execute_get_command`.
+  2.2. **Gets command testing:** `test_execute_gets_command`.
+3. To test each test case of the Storage Commands, execute the command: `rails test test\models\memcached_storage_command_manager_test.rb -n <NameOfTestCase>`. List of test cases:
+  3.1. **Set command testing**: `test_execute_set_command`.
+  3.2. **Add command testing**: `test_execute_add_command_failed` - key already exists - and `test_execute_add_command_success`.
+  3.3. **Replace command testing**: `test_execute_replace_command_failed` - key does not exist - and `test_execute_replace_command_success`.
+  3.4. **Append command testing**: `test_execute_append_command_failed` - key-value stored is not a raw-typed value- and  `test_execute_append_command_success`.
+  3.5. **Prepend command testing**: `test_execute_prepend_command_failed` - key-value stored is not a raw-typed value- and  `test_execute_prepend_command_success`.
+  3.6. **Cas command testing**: `test_execute_cas_command`.
 4. **Memcached - Both Retrieval and Storage Commands tests**: execute the command `rails test`.
  
 ### C) Run it into local environment:

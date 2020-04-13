@@ -67,24 +67,25 @@ class MemcachedStorageCommandManagerTest < ActiveSupport::TestCase
 #===========================
  #5) Prepend command tests:
  def test_execute_prepend_command_failed
-  @@storageCommandManager.execute_set_command("prependKeyII","prependValueI", nil)
-  @@storageCommandManager.execute_prepend_command("prependKeyII", "prependValueZ")
-  result = @@retrievalCommandManager.execute_get_command("prependKeyII")
-  assert result == "prependValueI"
+  @@storageCommandManager.execute_set_command("epKeyOne","prependValueI", nil)
+  @@storageCommandManager.execute_prepend_command("epKeyOne", "prependValueZ")
+  assert_raises(Dalli::UnmarshalError){
+    @@retrievalCommandManager.execute_get_command("epKeyOne")
+  } 
  end
 
  def test_execute_prepend_command_success
-  @@storageCommandManager.execute_set_command("prependKeyII","prependValueI", 1.to_s)
-  @@storageCommandManager.execute_prepend_command("prependKeyII", "prependValue0")
-  result = @@retrievalCommandManager.execute_get_command("prependKeyII")
+  @@storageCommandManager.execute_set_command("epKeyDue","prependValueI", 1.to_s)
+  @@storageCommandManager.execute_prepend_command("epKeyDue", "prependValue0")
+  result = @@retrievalCommandManager.execute_get_command("epKeyDue")
   assert result == "prependValue0prependValueI"
  end
 
  #===========================
  #6) Cas command tests:
- def test_execute_cas_command_success
-  result1 = @@storageCommandManager.execute_cas_command("prependKeyII","casValue", 1.to_s)
-  result = @@retrievalCommandManager.execute_get_command("prependKeyII")
+ def test_execute_cas_command
+  result1 = @@storageCommandManager.execute_cas_command("appendKeyII","casValue", 1.to_s)
+  result = @@retrievalCommandManager.execute_get_command("appendKeyII")
   assert (result1.split(":")[1].to_i.is_a? Integer)==true && result == "casValue"
  end
 

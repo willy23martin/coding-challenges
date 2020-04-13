@@ -129,6 +129,9 @@ class CMemcachedStorageCommandManager < CMemcachedManager
         rescue Dalli::DalliError => dalliError
           puts  "Error Message: #{dalliError.message}"
           return "The prepend: {#{key},#{new_value}} operation failed. The #{key} key does not exist in server."
+        rescue Dalli::UnmarshalError => marshallError
+          puts  "Error Message: #{marshallError.message}"
+          return "The prepend: {#{key},#{new_value}} operation failed. Error: #{marshallError.message}."
         else
           return "The prepend: {#{key},#{new_value}} operation was successfuly completed."
         end
