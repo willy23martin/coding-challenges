@@ -42,4 +42,12 @@ class MemcachedStorageCommandManager < ApplicationRecord
     return result
   end
 
+  #6) Cas command:
+  def execute_cas_command(key,new_value,raw)
+    puts "Prepend command was executed with #{key} as a key."
+    result = @@storageCommandManager.execute_cas_command(key,new_value,raw)
+    puts "The result of the command is #{result}."
+    return result
+  end
+
 end

@@ -54,7 +54,9 @@ environment variables:
 
 ### B) Testing the MemcachedClient commands:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=test`.
-2. **Memcached - Both Retrieval and Storage Commands tests**: execute the command `rails test`.
+2. To test each test case of the Retrieval Commands, execute the command: `rails test test\models\memcached_retrieval_command_manager_test.rb -n <NameOfTestCase>`.
+3. To test each test case of the Storage Commands, execute the command: `rails test test\models\memcached_storage_command_manager_test.rb -n <NameOfTestCase>`
+4. **Memcached - Both Retrieval and Storage Commands tests**: execute the command `rails test`.
  
 ### C) Run it into local environment:
 1. Migrate the db to the test environment by executing the command: `rails db:migrate RAILS_ENV=development`
@@ -83,3 +85,5 @@ to execute both Retrieval / Storage commands.
 18. [RubyOnRails-Testing-DatabaseIsLockedError-DatabaseTimeout](https://stackoverflow.com/questions/7154664/ruby-sqlite3busyexception-database-is-locked).
 19. [RubyOnRails-Testing-DatabasesIsLockedError-DatabaseTimeout-Configfile](https://github.com/rails/rails/issues/30937).
 20. [RubyOnRails-DalliGem-Documentation](https://github.com/petergoldstein/dalli).
+21. [Memcached-cas-command-notes](https://devcenter.heroku.com/articles/advanced-memcache).
+22. [Bootstrap and ERB Templates in RubyOnRails](https://melvinchng.github.io/rails/BootstrapFramework.html#chapter-1-bootstrap-framework).

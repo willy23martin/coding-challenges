@@ -45,12 +45,20 @@ class MemcachedStorageCommandsController < ApplicationController
       new_value = commandBody.split(",")[1]
       @result = @@storageCommandManager.execute_append_command(key, new_value)
     when "5" #prepend
-      puts "Arrives to append option"
+      puts "Arrives to prepend option"
       puts params[:post][:commandBody]
       commandBody = params[:post][:commandBody]
       key = commandBody.split(",")[0]
       new_value = commandBody.split(",")[1]
       @result = @@storageCommandManager.execute_prepend_command(key, new_value)
+    when "6" #cas
+      puts "Arrives to cas option"
+      puts params[:post][:commandBody]
+      commandBody = params[:post][:commandBody]
+      raw = params[:post][:raw]
+      key = commandBody.split(",")[0]
+      new_value = commandBody.split(",")[1]
+      @result = @@storageCommandManager.execute_cas_command(key,new_value,raw)
     else
       @result = "Select a Storage Command option."
     end

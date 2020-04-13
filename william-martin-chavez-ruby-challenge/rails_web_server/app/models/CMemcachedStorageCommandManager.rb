@@ -102,7 +102,7 @@ class CMemcachedStorageCommandManager < CMemcachedManager
         puts "The key received was #{key}."
         begin
           @dalliMemcachedClient.append(key, new_value)
-        rescue DalliError => dalliError
+        rescue Dalli::DalliError => dalliError
           puts  "Error Message: #{dalliError.message}"
           return "The append: {#{key},#{new_value}} operation failed. The #{key} key does not exist in server."
         else
@@ -113,8 +113,8 @@ class CMemcachedStorageCommandManager < CMemcachedManager
 
     #5) Prepend storage command: add the new value passed by parameter to an existing key before existing values related to that key-rawValue object.
     #@params:
-    #- key: the key of the key-value of the object you want the new value to be appended.
-    #- new_value: the value of the key-value object you want to append.
+    #- key: the key of the key-value of the object you want the new value prepended.
+    #- new_value: the value of the key-value object you want to prepend.
     def execute_prepend_command(key, new_value)
       if(key == '')
         puts "The key received was #{key} and it is empty."
@@ -131,6 +131,41 @@ class CMemcachedStorageCommandManager < CMemcachedManager
           return "The prepend: {#{key},#{new_value}} operation failed. The #{key} key does not exist in server."
         else
           return "The prepend: {#{key},#{new_value}} operation was successfuly completed."
+        end
+      end
+    end
+
+    #6) Cas storage command: store the new key-value object passed by parameters but only if no client has updated the same key since this client last fetched it.
+    #@params:
+    #- key: the key of the key-value of the object to verify the storage condition.
+    #- new_value: the value of the key-value object you want to replace.
+    #- raw: true - if the value to store wants to be able to prepend/append or not.
+    def execute_cas_command(key,new_value,raw)
+      puts "Raw: #{raw}"
+      if(raw == "1")
+        raw = true
+      else
+        raw = false
+      end 
+      @result = ""
+      if(key == '')
+        puts "The key received was #{key} and it is empty."
+        return "The key received was #{key} and it is empty."
+      elsif(key == nil)
+        puts "The key received was #{nil} and it is nil."
+        return "The key received was #{nil} and it is not defined."
+      else
+        puts "The key received was #{key}."
+        begin
+          @result = @dalliMemcachedClient.cas(key, 0,raw:raw){
+            new_value
+          }
+          puts "Cas result: #{@result}"
+        rescue Dalli::DalliError => dalliError
+          puts  "Error Message: #{dalliError.message}"
+          return "The cas: {#{key},#{new_value}} operation failed. The #{key} key does not exist in server."
+        else
+          return "The cas: {#{key},#{new_value}} operation was successfuly completed. Cas_token:#{@result}"
         end
       end
     end
