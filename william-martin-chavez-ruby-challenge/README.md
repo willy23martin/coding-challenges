@@ -81,9 +81,13 @@ to execute both Retrieval / Storage commands.
 
 ### D) MemcachedClient-WebClient-User Manual:
 In order to execute the commands using the web browser client, the following instructions should be followed:
+
 1. **Execute Retrieval Commands**: click the *Retrieval commands* button in the main web page.
-   - *Get command*: select the **get** option from the dropdown list and write the key in the text field. **Input example**: mooveitKey.
+
+   - **Get command**: select the **get** option from the dropdown list and write the key in the text field. **Input example**: mooveitKey.
    - **Gets command**: select the **gets** option from the dropdown list and write the keys separated by a blank space in the text field. **Input example**: mooveitKey elementKey.
+
+
 2. **Execute Storage Commands**: click the *Storage Commands button* in the main web page.
    - **Set command**: select the **set** option from the dropdown list and write the key and the value in the text field separated by comma. Select the Allow Append/Prepend checkbox in order to execute the prepend or append commands successfully in the key specified. **Input example**: key,value.
    - **Add command**: select the **add** option from the dropdown list and write the key and the value in the text field separated by comma. Select the Allow Append/Prepend checkbox in order to execute the prepend or append commands successfully in the key specified. **Input example**: key,value.
@@ -91,6 +95,8 @@ In order to execute the commands using the web browser client, the following ins
    - **Append command**: select the **append** option from the dropdown list and write the key and the value in the text field separated by comma. **Input example**: key,valueToAppend.
    - **Prepend command**: select the **prepend** option from the dropdown list and write the key and the value in the text field separated by comma. **Input example**: key,valueToPrepend.
    - **Cas command**: select the **cas** option from the dropdown list and write the key and the value in the text field separated by comma. **Input example**: key,value.
+
+
 3. Verify the result of every command execution in the *Storage or Retrieval Command results:* area.
 
 
